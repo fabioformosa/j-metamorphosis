@@ -1,17 +1,9 @@
-package dev.metamorphosis.entities;
+package dev.metamorphosis.dtos;
 
-import javax.persistence.Entity;
+public class NoIdDTO {
 
-@Entity
-public class SimpleEntity {
-
-  private Long id;
   private String foo;
   private String bar;
-
-  public Long getId() {
-    return id;
-  }
 
   public String getFoo() {
     return foo;
@@ -28,11 +20,5 @@ public class SimpleEntity {
   public void setBar(String bar) {
     this.bar = bar;
   }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-
 
 }

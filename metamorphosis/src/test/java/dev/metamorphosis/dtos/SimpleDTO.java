@@ -1,15 +1,12 @@
 package dev.metamorphosis.dtos;
 
-import dev.metamorphosis.convertibles.Metamorphic;
-
-public class SimpleDTO implements Metamorphic<Long> {
+public class SimpleDTO {
 
   private Long id;
   private String foo;
 
   private String fooBar;
 
-  @Override
   public Long getId() {
     return id;
   }

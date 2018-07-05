@@ -1,38 +1,36 @@
 package dev.metamorphosis;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.metamorphosis.convertibles.Metamorphic;
-
 /**
  * Extend this class if you have to convert from DTO to Entity. <br>
  * <br>
  *
- * The Entity is retrieved from DB Repository, according to ID of DTO. <br>
+ * If an ID getter is found into the DTO, so the Entity is retrieved from DB
+ * Repository. Otherwise a new entity is instantiated. <br>
  * <br>
  * 
- * Entity must have a default constructor and must implement
- * {@link dev.metamorphosis.convertibles.Metamorphic} <br>
+ * Entity must have a default constructor or an ID getter method
  * 
  * <br>
  * <br>
  * 
- * Default behaviour: it throws exception if entity is not found. Override
- * shouldThrowExceptionIfEntityNotFound to change the default behaviour.
+ * Default behaviour: it throws exception if entity is not found by ID of DTO.
+ * Override shouldThrowExceptionIfEntityNotFound to change the default
+ * behaviour.
  * 
  * @author Fabio.Formosa
- * @param <ID_TYPE>
- * @param <ID_TYPE>
  * 
  */
 
 @SuppressWarnings("rawtypes")
-public abstract class AbstractBaseConverterToEntity<S extends Metamorphic, T extends Metamorphic>
+public abstract class AbstractBaseConverterToEntity<S, T>
 extends AbstractBaseConverter<S, T> {
 
   @SuppressWarnings("unchecked")
@@ -60,7 +58,13 @@ extends AbstractBaseConverter<S, T> {
   }
 
   protected Serializable extractEntityIdFromDTO(S source) {
-    return source.getId();
+    Method idGetter;
+    try {
+      idGetter = source.getClass().getMethod("getId");
+      return (Serializable) idGetter.invoke(source);
+    } catch (ReflectiveOperationException e) {
+      return null;
+    }
   }
 
   protected abstract JpaRepository getRepository();
