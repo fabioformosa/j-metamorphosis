@@ -1,5 +1,5 @@
-# metamorphosis
-This library helps you to create converters based on spring conversion service.
+# METAMORPHOSIS (CONVERSIONS)
+This **java library** helps you to create converters based on **spring conversion service**.
 
 > "Nothing is lost, nothing is created, everything is transformed"
 > _Lavoisier
