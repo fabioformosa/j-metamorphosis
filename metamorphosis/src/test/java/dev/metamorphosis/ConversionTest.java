@@ -16,10 +16,14 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import dev.metamorphosis.converters.ItemDTOToItemEntity;
 import dev.metamorphosis.converters.SimpleDtoToSimpleEntity;
+import dev.metamorphosis.dtos.ItemDTO;
 import dev.metamorphosis.dtos.NoIdDTO;
 import dev.metamorphosis.dtos.SimpleDTO;
+import dev.metamorphosis.entities.ItemEntity;
 import dev.metamorphosis.entities.SimpleEntity;
+import dev.metamorphosis.repositories.ItemJpaRepository;
 import dev.metamorphosis.repositories.SimpleJpaRepository;
 
 @RunWith(SpringRunner.class)
@@ -28,6 +32,25 @@ public class ConversionTest {
 
   private static final String FOO = "foo";
   private static final String BAR = "bar";
+  private static final String SAMPLE = "sample";
+
+  @Resource
+  private ConversionService conversionService;
+
+  @Mock
+  private SimpleJpaRepository simpleJpaRepository;
+  @Mock
+  private ItemJpaRepository itemJpaRepository;
+
+  @Resource
+  @InjectMocks
+  private SimpleDtoToSimpleEntity simpleDtoToSimpleEntity;
+  @Resource
+  @InjectMocks
+  private ItemDTOToItemEntity itemDTOToItem;
+
+  private SimpleEntity simpleEntityMock;
+  private ItemEntity itemEntityMock;
 
   @Before
   public void init() {
@@ -38,20 +61,13 @@ public class ConversionTest {
     simpleEntityMock.setFoo(FOO);
     simpleEntityMock.setBar(BAR);
 
+    itemEntityMock = new ItemEntity();
+    itemEntityMock.setId(1L);
+    itemEntityMock.setName(SAMPLE);
+
     Mockito.when(simpleJpaRepository.findById(1L)).thenReturn(Optional.of(simpleEntityMock));
+    Mockito.when(itemJpaRepository.findById(1L)).thenReturn(Optional.of(itemEntityMock));
   }
-
-  @Resource
-  private ConversionService conversionService;
-
-  @Mock
-  private SimpleJpaRepository simpleJpaRepository;
-
-  @Resource
-  @InjectMocks
-  private SimpleDtoToSimpleEntity simpleDtoToSimpleEntity;
-
-  private SimpleEntity simpleEntityMock;
 
   @Test
   public void fromEntityToDTO() {
@@ -68,6 +84,19 @@ public class ConversionTest {
     Assert.assertNotNull(conversionService);
 
     SimpleDTO mockSimpleDTO = new SimpleDTO();
+    mockSimpleDTO.setId(null);
+    mockSimpleDTO.setFoo("testDTO");
+
+    SimpleEntity simpleEntity = conversionService.convert(mockSimpleDTO, SimpleEntity.class);
+    Assert.assertEquals(mockSimpleDTO.getId(), simpleEntity.getId());
+    Assert.assertEquals(mockSimpleDTO.getFoo(), simpleEntity.getFoo());
+  }
+
+  @Test
+  public void fromDTOToEntityWithDBRetrieving() {
+    Assert.assertNotNull(conversionService);
+
+    SimpleDTO mockSimpleDTO = new SimpleDTO();
     mockSimpleDTO.setId(1L);
     mockSimpleDTO.setFoo("testDTO");
 
@@ -81,13 +110,37 @@ public class ConversionTest {
     Assert.assertNotNull(conversionService);
 
     NoIdDTO noIdDTO = new NoIdDTO();
-    noIdDTO.setFoo(FOO);
-    noIdDTO.setBar(BAR);
+    noIdDTO.setFoo(FOO + "2");
+    noIdDTO.setBar(BAR + "2");
 
     SimpleEntity simpleEntity = conversionService.convert(noIdDTO, SimpleEntity.class);
     Assert.assertNull(simpleEntity.getId());
     Assert.assertEquals(noIdDTO.getFoo(), simpleEntity.getFoo());
     Assert.assertEquals(noIdDTO.getBar(), simpleEntity.getBar());
+  }
+
+  @Test
+  public void fromItemEntityToItemDTO() {
+    Assert.assertNotNull(conversionService);
+
+    ItemDTO itemDTO = conversionService.convert(itemEntityMock, ItemDTO.class);
+
+    Assert.assertEquals(itemEntityMock.getId(), itemDTO.getId());
+    Assert.assertEquals(itemEntityMock.getName(), itemDTO.getName());
+  }
+
+  @Test
+  public void fromItemDTOToItemEntity() {
+    Assert.assertNotNull(conversionService);
+
+    ItemDTO itemDTO = new ItemDTO();
+    itemDTO.setId(1L);
+    itemDTO.setName(SAMPLE + "2");
+
+    ItemEntity itemEntity = conversionService.convert(itemDTO, ItemEntity.class);
+    Assert.assertEquals(itemDTO.getId(), itemEntity.getId());
+    Assert.assertEquals(itemDTO.getName(), itemEntity.getName());
+
   }
 
 }
