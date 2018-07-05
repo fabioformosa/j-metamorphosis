@@ -2,7 +2,6 @@ package dev.metamorphosis.converters;
 
 import org.springframework.stereotype.Component;
 
-import dev.metamorphosis.AbstractBaseConverterToDTO;
 import dev.metamorphosis.dtos.SimpleDTO;
 import dev.metamorphosis.entities.SimpleEntity;
 

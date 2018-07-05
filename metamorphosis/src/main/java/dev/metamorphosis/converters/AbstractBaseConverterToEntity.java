@@ -1,4 +1,4 @@
-package dev.metamorphosis;
+package dev.metamorphosis.converters;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
