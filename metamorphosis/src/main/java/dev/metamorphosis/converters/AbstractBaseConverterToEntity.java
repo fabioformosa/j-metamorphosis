@@ -30,8 +30,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 @SuppressWarnings("rawtypes")
-public abstract class AbstractBaseConverterToEntity<S, T>
-extends AbstractBaseConverter<S, T> {
+public abstract class AbstractBaseConverterToEntity<S, T> extends AbstractBaseConverter<S, T> {
 
   @SuppressWarnings("unchecked")
   @Override

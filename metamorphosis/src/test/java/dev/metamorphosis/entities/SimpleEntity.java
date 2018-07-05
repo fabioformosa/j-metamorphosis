@@ -34,5 +34,9 @@ public class SimpleEntity {
   }
 
 
+  @Override
+  public String toString() {
+    return "SimpleEntity [id=" + id + ", foo=" + foo + ", bar=" + bar + "]";
+  }
 
 }
