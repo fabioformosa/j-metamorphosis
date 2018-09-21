@@ -58,7 +58,7 @@ public class DtoFieldMapper {
     ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
     scanner.addIncludeFilter(new AnnotationTypeFilter(MappedOnEntity.class));
 
-    scanner.findCandidateComponents("dev").stream().map(beanDefinition -> beanDefinition.getBeanClassName())
+    scanner.findCandidateComponents("*").stream().map(beanDefinition -> beanDefinition.getBeanClassName())
     .forEach(this::buildMappingByDTOName);
 
     log.debug("Completed scanning of DTOs mapped by {} ...", MappedOnEntity.class.getSimpleName());
