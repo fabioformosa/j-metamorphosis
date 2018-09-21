@@ -23,6 +23,7 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class DtoFieldMapper {
 
@@ -52,7 +53,7 @@ public class DtoFieldMapper {
   private Map<Class<?>, Map<String, String>> entityMappingsIndexedByDtoClass = new HashMap<>();
 
   @PostConstruct
-  public void scanDtoAndCreateMappings() {
+  protected void scanDtoAndCreateMappings() {
     log.debug("Scanning DTOs mapped by {} ...", MappedOnEntity.class.getSimpleName());
 
     ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
