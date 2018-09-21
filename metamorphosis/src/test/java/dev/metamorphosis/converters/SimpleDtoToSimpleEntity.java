@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
-import dev.metamorphosis.dtos.SimpleDTO;
-import dev.metamorphosis.entities.SimpleEntity;
+import dev.metamorphosis.dtos.converting.SimpleDTO;
+import dev.metamorphosis.entities.converting.SimpleEntity;
 import dev.metamorphosis.repositories.SimpleJpaRepository;
 
 @Component

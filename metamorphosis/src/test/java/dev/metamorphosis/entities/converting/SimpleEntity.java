@@ -1,4 +1,4 @@
-package dev.metamorphosis.entities;
+package dev.metamorphosis.entities.converting;
 
 import javax.persistence.Entity;
 

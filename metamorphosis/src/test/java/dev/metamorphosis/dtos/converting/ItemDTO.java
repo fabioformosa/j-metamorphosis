@@ -1,9 +1,6 @@
-package dev.metamorphosis.entities;
+package dev.metamorphosis.dtos.converting;
 
-import javax.persistence.Entity;
-
-@Entity
-public class ItemEntity {
+public class ItemDTO {
 
   private Long id;
   private String name;
@@ -23,5 +20,6 @@ public class ItemEntity {
   public void setName(String name) {
     this.name = name;
   }
+
 
 }

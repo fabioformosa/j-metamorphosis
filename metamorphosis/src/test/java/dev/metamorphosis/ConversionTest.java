@@ -18,11 +18,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import dev.metamorphosis.converters.ItemDTOToItemEntity;
 import dev.metamorphosis.converters.SimpleDtoToSimpleEntity;
-import dev.metamorphosis.dtos.ItemDTO;
-import dev.metamorphosis.dtos.NoIdDTO;
-import dev.metamorphosis.dtos.SimpleDTO;
-import dev.metamorphosis.entities.ItemEntity;
-import dev.metamorphosis.entities.SimpleEntity;
+import dev.metamorphosis.dtos.converting.ItemDTO;
+import dev.metamorphosis.dtos.converting.NoIdDTO;
+import dev.metamorphosis.dtos.converting.SimpleDTO;
+import dev.metamorphosis.entities.converting.ItemEntity;
+import dev.metamorphosis.entities.converting.SimpleEntity;
 import dev.metamorphosis.repositories.ItemJpaRepository;
 import dev.metamorphosis.repositories.SimpleJpaRepository;
 

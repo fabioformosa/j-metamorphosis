@@ -1,4 +1,4 @@
-package dev.metamorphosis.dtos;
+package dev.metamorphosis.dtos.converting;
 
 public class NoIdDTO {
 

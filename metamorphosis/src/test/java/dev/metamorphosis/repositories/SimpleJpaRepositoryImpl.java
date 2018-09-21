@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import dev.metamorphosis.entities.SimpleEntity;
+import dev.metamorphosis.entities.converting.SimpleEntity;
 
 @Component
 public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {

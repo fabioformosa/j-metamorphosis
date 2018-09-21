@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
 
   <name>metamorphosis</name>
-  <description>Metamorphosis is a library useful to convert objects. "Nothing is lost, nothing is created, everything is transformed." - Lavoisier</description>
+  <description>Metamorphosis helps you convert entities from/to DTOs . "Nothing is lost, nothing is created, everything is transformed." - Lavoisier</description>
 
   <developers>
     <developer>
@@ -69,6 +69,14 @@
         <artifactId>hibernate-jpa-2.1-api</artifactId>
         <version>1.0.2.Final</version>
     </dependency>
+    
+    <!-- Misc -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.8</version>
+    </dependency>
+    
 
     <!-- TEST -->
     <dependency>
