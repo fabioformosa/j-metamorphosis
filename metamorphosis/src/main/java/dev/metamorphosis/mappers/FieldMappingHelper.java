@@ -24,8 +24,15 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * Helper class to get mappings between DTO fields and entity fields.<br/>
+ * Recommended to build hibernate query criteria, using values in DTO (e.g
+ * filtering from data grid)
+ *
+ */
+
 @Component
-public class DtoFieldMapper {
+public class FieldMappingHelper {
 
   static private class MapRecord {
     private String dtoField;
@@ -47,7 +54,7 @@ public class DtoFieldMapper {
 
   }
 
-  private static final Logger log = LoggerFactory.getLogger(DtoFieldMapper.class);
+  private static final Logger log = LoggerFactory.getLogger(FieldMappingHelper.class);
 
   /** dtoClass - Map<dtoField, path of entityField> */
   private Map<Class<?>, Map<String, String>> entityMappingsIndexedByDtoClass = new HashMap<>();
@@ -80,7 +87,7 @@ public class DtoFieldMapper {
     }
   }
 
-  public Map<String, String> getMapping(Class<?> dtoClass) {
+  public Map<String, String> getMappingByDTO(Class<?> dtoClass) {
     return entityMappingsIndexedByDtoClass.get(dtoClass);
   }
 
