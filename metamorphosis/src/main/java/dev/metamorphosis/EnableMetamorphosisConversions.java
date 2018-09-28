@@ -18,4 +18,6 @@ public @interface EnableMetamorphosisConversions {
 
   @AliasFor(annotation = Import.class, attribute = "value")
   Class<?>[] value() default { MetamorphosisConfig.class };
+
+  boolean createConversionService() default true;
 }
