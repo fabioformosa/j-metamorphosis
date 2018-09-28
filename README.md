@@ -1,8 +1,17 @@
 # METAMORPHOSIS (CONVERSIONS)
-This **java library** helps you to create converters based on **spring conversion service**.
 
 > "Nothing is lost, nothing is created, everything is transformed"
 > _Lavoisier
+
+This **java library** helps you to create converters based on **spring conversion service**.
+
+
+It creates the conversion service and registers all your converters. For DTO/Entity converters, let inherit from a base classes (DefaultConverterToDTO, DefaultConverterToEntity) to take advantage of automatically entity retrieve from DB. 
+
+
+Furthermore, if you need a mapping between DTO and Entity fields, for example to create JPA specifications in order to filter, you can use mapping annotations (@MappedOnEntity, @MappedOnEntityField) and FieldMapingHelper to get the map <dto entity field, entity field path>.
+
+
 
 ## QUICK START
 ### ENABLE METAMORPHIS CONVERTIONS
