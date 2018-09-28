@@ -13,6 +13,6 @@ public @interface MappedOnEntity {
   /**
    * Class of entity mapped by DTO
    */
-  Class<?> value();
+  Class<?> value() default Void.class;
 
 }
