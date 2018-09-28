@@ -60,3 +60,59 @@ add `@EnableMetamorphosisConversions` to your spring boot config class
       }
     
     }
+    
+## DTOs/ENTITIES: HELPER FOR FIELD MAPPINGS
+Usually DTOs are used to extract data to build hibernate query criteria to apply filtering (e.g. filterable grids).
+In this case, you need mapping data to get entity fieldname for each field of DTO.
+`dev.metamorphosis.mappers.FieldMappingHelper` helps you to get a `map<String, String>` that binds a DTO fieldname to entity fieldname (with dot notation, e.g. 'dto.foo' -> 'entity.foo').
+You should annotate your DTO with annotation `dev.metamorphosis.mappers.MappedOnEntity`  and fields with `dev.metamorphosis.mappers.MappedOnEntityField`, so you can invoke `FieldMappingHelper.getMappingByDTO(DTO.class)` to get mappings data you need.
+e.g. 
+
+    ### ENTITY ###
+	@Entity
+	public class AuditedItemEntity {
+	  private Long id;
+	  private String name;
+
+	  private String category;
+
+	  private Location location;
+	  private Location targetLocation;
+
+	  private String itemTypeLabel;
+
+	  private LocalDateTime createdDate;
+	  private String creationUser;
+	  private LocalDateTime lastModifyDate;
+	  private String lastModifyUser;
+      
+      ... (getters and setters)...
+	}
+	
+	### DTO ###	
+
+	@MappedOnEntity(AuditedItemEntity.class)
+	public class AuditItemDTO {
+
+	  private Long id;
+
+	  @MappedOnEntityField
+	  private String name;
+
+	  @MappedOnEntityField(entityField = "category")
+	  private String categoryName;
+
+	  @MappedOnEntityField(entityField = "location", cascade = true)
+	  private LocationDTO locationDTO;
+
+	  @MappedOnEntityField(entityField = "targetLocation.name")
+	  private String targetLocationName;
+
+	  @MappedOnEntityField(entityField = "itemTypeLabel", innerDtoField = "enumLabel", cascade = false)
+	  private EnumDTO itemType;
+
+	  @MappedOnEntityField(cascade = true, concatOnCascade = false)
+	  private AuditDTO auditDTO;
+	  
+	  ...(getters and setters)
+	  }
