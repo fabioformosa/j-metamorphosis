@@ -56,8 +56,8 @@ public class FieldMappingHelper {
 
   private static final Logger log = LoggerFactory.getLogger(FieldMappingHelper.class);
 
-  /** dtoClass - Map<dtoField, path of entityField> */
-  private Map<Class<?>, Map<String, String>> entityMappingsIndexedByDtoClass = new HashMap<>();
+  /** dtoClassName - Map<dtoField, path of entityField> */
+  private Map<String, Map<String, String>> entityMappingsIndexedByDtoClass = new HashMap<>();
 
   @PostConstruct
   protected void scanDtoAndCreateMappings() {
@@ -77,7 +77,7 @@ public class FieldMappingHelper {
     try {
       Class<?> annotatedDtoClass = Class.forName(annotatedDtoClassName);
       Map<String, String> entityMapping = buildMappingByAnnotatedDTOClass(annotatedDtoClass);
-      entityMappingsIndexedByDtoClass.put(annotatedDtoClass, entityMapping);
+      entityMappingsIndexedByDtoClass.put(annotatedDtoClass.getName(), entityMapping);
     } catch (ClassNotFoundException e) {
       log.error("Class not found {}", annotatedDtoClassName);
     } catch (IllegalAccessError e) {
@@ -88,7 +88,17 @@ public class FieldMappingHelper {
   }
 
   public Map<String, String> getMappingByDTO(Class<?> dtoClass) {
-    return entityMappingsIndexedByDtoClass.get(dtoClass);
+    return entityMappingsIndexedByDtoClass.get(dtoClass.getName());
+  }
+
+  /**
+   * 
+   * @param qualified
+   *          dtoClassName
+   * @return
+   */
+  public Map<String, String> getMappingByDTO(String dtoClassName) {
+    return entityMappingsIndexedByDtoClass.get(dtoClassName);
   }
 
   private Map<String, String> buildMappingByAnnotatedDTOClass(Class<?> clazz) {
