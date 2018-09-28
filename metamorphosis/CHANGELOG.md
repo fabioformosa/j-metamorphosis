@@ -1,5 +1,17 @@
 # METAMORPHOSIS Changelog
 
+### 1.1.2 ###
+
+#### Fix ####
+It doesn't create conversionService if it exists
+
+#### New Features or Enhancements ####
+added an optional attribute to @EnableMetamorphisisConversions to avoid conversionService creation
+
+#### Breaking Changes ####
+none  
+
+------
 ### 1.1.1 ###
 
 #### Fix ####
