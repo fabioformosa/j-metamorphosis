@@ -46,6 +46,11 @@
           <artifactId>metamorphosis-core</artifactId>
           <version>${project.version}</version>
         </dependency>
+        <dependency>
+          <groupId>dev.metamorphosis</groupId>
+          <artifactId>metamorphosis-test</artifactId>
+          <version>${project.version}</version>
+        </dependency>
         
       <!-- SPRING -->
         <dependency>
@@ -90,11 +95,13 @@
         <scope>test</scope>
       </dependency>
     </dependencies>
+    
   </dependencyManagement>
   
   <modules>
     <module>metamorphosis-core</module>
     <module>metamorphosis-jpa</module>
+    <module>metamorphosis-test</module>
   </modules>
   
 </project>
