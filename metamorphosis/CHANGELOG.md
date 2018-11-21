@@ -1,5 +1,39 @@
 # METAMORPHOSIS Changelog
 
+### 2.0.0 ###
+
+#### New Features or Enhancements ####
+Refs #1 - It allows to import metamorphosis in project without jpa dependency. For example, you can import metamorphosis in a module containing only DTOs
+
+#### Breaking Changes ####
+Change metamorphosis import into your pom.xml
+
+from
+	
+		<dependency>
+      		<groupId>dev.metamorphosis</groupId>
+      		<artifactId>metamorphosis</artifactId>
+      		<version>1.2.0</version>
+    	</dependency>
+    	
+to `metamorphosis-jpa`
+
+		<dependency>
+      		<groupId>dev.metamorphosis</groupId>
+      		<artifactId>metamorphosis-jpa</artifactId>
+      		<version>2.0.0</version>
+    	</dependency>
+or to `metamorphosis-core` to avoid transitive dependency toward jpa
+
+		<dependency>
+      		<groupId>dev.metamorphosis</groupId>
+      		<artifactId>metamorphosis-core</artifactId>
+      		<version>2.0.0</version>
+    	</dependency>
+
+
+------
+
 ### 1.1.2 ###
 
 #### Fix ####
