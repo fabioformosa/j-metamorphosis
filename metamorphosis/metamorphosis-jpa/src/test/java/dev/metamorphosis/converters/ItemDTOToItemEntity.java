@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import dev.metamorphosis.dtos.converting.ItemDTO;
 import dev.metamorphosis.entities.converting.ItemEntity;
+import dev.metamorphosis.jpa.converters.DefaultConverterToEntity;
 import dev.metamorphosis.repositories.ItemJpaRepository;
 
 @Component

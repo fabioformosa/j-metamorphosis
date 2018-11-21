@@ -1,4 +1,4 @@
-package dev.metamorphosis;
+package dev.metamorphosis.core;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
 
-import dev.metamorphosis.config.MetamorphosisConfig;
+import dev.metamorphosis.core.config.MetamorphosisConfig;
 
 @Retention(RUNTIME)
 @Target(TYPE)

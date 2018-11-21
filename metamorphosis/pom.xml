@@ -39,6 +39,14 @@
 
   <dependencyManagement>
     <dependencies>
+    
+      <!-- CORE -->
+        <dependency>
+          <groupId>dev.metamorphosis</groupId>
+          <artifactId>metamorphosis-core</artifactId>
+          <version>${project.version}</version>
+        </dependency>
+        
       <!-- SPRING -->
         <dependency>
           <groupId>org.springframework</groupId>

@@ -1,4 +1,4 @@
-package dev.metamorphosis.converters;
+package dev.metamorphosis.core.converters;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;

@@ -1,4 +1,4 @@
-package dev.metamorphosis.converters;
+package dev.metamorphosis.core.converters;
 
 import org.springframework.beans.BeanUtils;
 

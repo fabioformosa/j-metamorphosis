@@ -1,4 +1,4 @@
-package dev.metamorphosis.config;
+package dev.metamorphosis.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

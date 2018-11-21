@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import dev.metamorphosis.dtos.converting.NoIdDTO;
 import dev.metamorphosis.entities.converting.SimpleEntity;
+import dev.metamorphosis.jpa.converters.AbstractBaseConverterToEntity;
 import dev.metamorphosis.repositories.SimpleJpaRepository;
 
 @Component

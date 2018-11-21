@@ -1,4 +1,4 @@
-package dev.metamorphosis.config;
+package dev.metamorphosis.core.config;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
-import dev.metamorphosis.EnableMetamorphosisConversions;
+import dev.metamorphosis.core.EnableMetamorphosisConversions;
 
 public class ConversionServiceCreationCondition implements Condition {
 
