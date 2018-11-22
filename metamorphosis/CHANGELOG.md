@@ -1,5 +1,17 @@
 # METAMORPHOSIS Changelog
 
+### 2.1.2 ###
+
+#### Fix ####
+none
+
+#### New Features or Enhancements ####
+[Refs #3](https://github.com/fabioformosa/metamorphosis/issues/3) - Converted basePackage attribute in basePackages  
+ 
+
+#### Breaking Changes ####
+Change @EnableMetamorphisisConversions(basePackage = "com.foo.bar") in @EnableMetamorphisisConversions(basePackages = "com.foo.bar") 
+
 ### 2.0.1 ###
 
 #### Fix ####
