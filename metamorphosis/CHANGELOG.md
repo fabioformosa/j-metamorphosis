@@ -1,9 +1,22 @@
 # METAMORPHOSIS Changelog
 
+### 2.0.1 ###
+
+#### Fix ####
+[Refs #2](https://github.com/fabioformosa/metamorphosis/issues/2) - Restricted component scan for fieldMapping Annotations to basePackage set in @EnableMetamorphisisConversions
+
+#### New Features or Enhancements ####
+Recommendation: add the basePackage containing your DTOs in @EnableMetamorphisisConversions annotation. e.g. @EnableMetamorphisisConversions(basePackage = "com.foo.bar") 
+
+#### Breaking Changes ####
+none  
+
+------
+
 ### 2.0.0 ###
 
 #### New Features or Enhancements ####
-Refs #1 - It allows to import metamorphosis in project without jpa dependency. For example, you can import metamorphosis in a module containing only DTOs
+[Refs #1](https://github.com/fabioformosa/metamorphosis/issues/1) - It allows to import metamorphosis in project without jpa dependency. For example, you can import metamorphosis in a module containing only DTOs
 
 #### Breaking Changes ####
 Change metamorphosis import into your pom.xml
