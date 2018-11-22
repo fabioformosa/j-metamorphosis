@@ -10,7 +10,7 @@ import org.springframework.core.convert.ConversionService;
 public class MetamorphosisConfig {
 
   private boolean createConversionService;
-  private String basePackage;
+  private String[] basePackages;
 
   @Conditional(value = ConversionServiceCreationCondition.class)
   @Bean(name = "conversionService")
@@ -26,16 +26,16 @@ public class MetamorphosisConfig {
     this.createConversionService = createConversionService;
   }
 
-  public void setBasePackage(String basePackage) {
-    this.basePackage = basePackage;
+  public void setBasePackages(String[] basePackages) {
+    this.basePackages = basePackages;
   }
 
   public boolean isCreateConversionService() {
     return createConversionService;
   }
 
-  public String getBasePackage() {
-    return basePackage;
+  public String[] getBasePackage() {
+    return basePackages;
   }
 
 }

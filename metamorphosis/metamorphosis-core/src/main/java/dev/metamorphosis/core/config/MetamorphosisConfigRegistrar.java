@@ -1,5 +1,8 @@
 package dev.metamorphosis.core.config;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -19,20 +22,20 @@ public class MetamorphosisConfigRegistrar implements ImportBeanDefinitionRegistr
         annotationMetadata.getAnnotationAttributes(EnableMetamorphosisConversions.class.getName()));
 
     boolean createConversionService = metamorphosisAttributes.getBoolean("createConversionService");
-    String basePackage = metamorphosisAttributes.getString("basePackage");
+    String[] basePackages = metamorphosisAttributes.getStringArray("basePackages");
 
     AbstractBeanDefinition metamorphosisBeanDefinition = BeanDefinitionBuilder
         .genericBeanDefinition(MetamorphosisConfig.class)
         .setAutowireMode(AbstractBeanDefinition.AUTOWIRE_CONSTRUCTOR)
         .addPropertyValue("createConversionService", createConversionService)
-        .addPropertyValue("basePackage", basePackage).getBeanDefinition();
+        .addPropertyValue("basePackages", new HashSet<>(Arrays.asList(basePackages))).getBeanDefinition();
     registry.registerBeanDefinition(
         StringUtils.uncapitalize(metamorphosisBeanDefinition.getBeanClass().getSimpleName()),
         metamorphosisBeanDefinition);
 
     AbstractBeanDefinition fieldMappingHelperBeanDefinition = BeanDefinitionBuilder
         .genericBeanDefinition(FieldMappingHelper.class).setAutowireMode(AbstractBeanDefinition.AUTOWIRE_CONSTRUCTOR)
-        .addPropertyValue("basePackage", basePackage).getBeanDefinition();
+        .addPropertyValue("basePackages", new HashSet<>(Arrays.asList(basePackages))).getBeanDefinition();
     registry.registerBeanDefinition(
         StringUtils.uncapitalize(fieldMappingHelperBeanDefinition.getBeanClass().getSimpleName()),
         fieldMappingHelperBeanDefinition);

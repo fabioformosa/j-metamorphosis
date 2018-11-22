@@ -22,7 +22,7 @@ public @interface EnableMetamorphosisConversions {
   /**
    * set to basePackage containing metamorphosis DTOs
    */
-  String basePackage() default "*";
+  String[] basePackages() default "*";
 
   /**
    * set true to create conversionService

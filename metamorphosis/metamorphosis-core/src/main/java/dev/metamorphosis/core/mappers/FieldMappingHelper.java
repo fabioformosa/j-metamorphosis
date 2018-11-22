@@ -7,6 +7,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.util.CollectionUtils;
 
 /**
  * Helper class to get mappings between DTO fields and entity fields.<br/>
@@ -28,9 +30,6 @@ import org.springframework.core.type.filter.AnnotationTypeFilter;
  * filtering from data grid)
  *
  */
-
-// @Configuration
-// @Component
 public class FieldMappingHelper {
 
   private static final Logger log = LoggerFactory.getLogger(FieldMappingHelper.class);
@@ -55,26 +54,34 @@ public class FieldMappingHelper {
 
   }
 
-  private String basePackage;
+  private Set<String> basePackages;
 
   /** dtoClassName - Map<dtoField, path of entityField> */
   private Map<String, Map<String, String>> entityMappingsIndexedByDtoClass = new HashMap<>();
 
   @PostConstruct
   protected void scanDtoAndCreateMappings() {
-    scanDtoAndCreateMappings(basePackage);
+    scanDtoAndCreateMappings(basePackages);
   }
 
-  public void scanDtoAndCreateMappings(String basePackage) {
+  public void scanDtoAndCreateMappings(Set<String> basePackages) {
     log.debug("Scanning DTOs mapped by {} ...", MappedOnEntity.class.getSimpleName());
 
     ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
     scanner.addIncludeFilter(new AnnotationTypeFilter(MappedOnEntity.class));
 
-    scanner.findCandidateComponents(basePackage).stream().map(beanDefinition -> beanDefinition.getBeanClassName())
-    .forEach(this::buildMappingByDTOName);
+    if (CollectionUtils.isEmpty(basePackages))
+      basePackages = new HashSet<>(Arrays.asList("*"));
+
+    basePackages.stream().forEach(basePackage -> startScanByPackageAndBuildMapping(scanner, basePackage));
 
     log.debug("Completed scanning of DTOs mapped by {} ...", MappedOnEntity.class.getSimpleName());
+  }
+
+  private void startScanByPackageAndBuildMapping(ClassPathScanningCandidateComponentProvider scanner,
+      String basePackage) {
+    scanner.findCandidateComponents(basePackage).stream().map(beanDefinition -> beanDefinition.getBeanClassName())
+    .forEach(this::buildMappingByDTOName);
   }
 
   private void buildMappingByDTOName(String annotatedDtoClassName) {
@@ -204,12 +211,12 @@ public class FieldMappingHelper {
     return StringUtils.isNotBlank(mappingAnnotation.entityField()) ? mappingAnnotation.entityField() : dtoField.getName();
   }
 
-  public String getBasePackage() {
-    return basePackage;
+  public Set<String> getBasePackages() {
+    return basePackages;
   }
 
-  public void setBasePackage(String basePackage) {
-    this.basePackage = basePackage;
+  public void setBasePackages(Set<String> basePackages) {
+    this.basePackages = basePackages;
   }
 
 }

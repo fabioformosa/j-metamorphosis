@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import dev.metamorphosis.core.EnableMetamorphosisConversions;
 
 @Configuration
-@EnableMetamorphosisConversions(basePackage = "dev.metamorphosis")
+@EnableMetamorphosisConversions(basePackages = { "dev.metamorphosis" })
 public class ConversionTestConfig {
 
 }
