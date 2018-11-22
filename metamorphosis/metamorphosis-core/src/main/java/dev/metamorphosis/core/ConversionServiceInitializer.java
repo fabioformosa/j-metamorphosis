@@ -22,8 +22,7 @@ import org.springframework.stereotype.Component;
 public class ConversionServiceInitializer {
 
   @Autowired(required = false)
-  @SuppressWarnings("rawtypes")
-  private Set<Converter> customConverters;
+  private Set<Converter<?, ?>> customConverters;
 
   @Resource
   private ConfigurableConversionService conversionService;
