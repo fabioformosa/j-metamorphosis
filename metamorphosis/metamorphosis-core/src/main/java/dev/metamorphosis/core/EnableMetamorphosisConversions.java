@@ -9,15 +9,17 @@ import java.lang.annotation.Target;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
 
-import dev.metamorphosis.core.config.MetamorphosisConfig;
+import dev.metamorphosis.core.config.MetamorphosisConfigRegistrar;
 
 @Retention(RUNTIME)
 @Target(TYPE)
-@Import(MetamorphosisConfig.class)
+@Import(MetamorphosisConfigRegistrar.class)
 public @interface EnableMetamorphosisConversions {
 
   @AliasFor(annotation = Import.class, attribute = "value")
-  Class<?>[] value() default { MetamorphosisConfig.class };
+  Class<?>[] value() default { MetamorphosisConfigRegistrar.class };
 
   boolean createConversionService() default true;
+
+  String basePackage() default "*";
 }

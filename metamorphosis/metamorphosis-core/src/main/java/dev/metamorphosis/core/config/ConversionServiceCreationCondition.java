@@ -1,42 +1,29 @@
 package dev.metamorphosis.core.config;
 
-import java.util.Set;
 
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
-import org.springframework.core.type.filter.AnnotationTypeFilter;
-
-import dev.metamorphosis.core.EnableMetamorphosisConversions;
+import org.springframework.util.StringUtils;
 
 public class ConversionServiceCreationCondition implements Condition {
 
+  private static final String CREATE_CONVERSION_SERVICE_ATTR = "createConversionService";
+
   @Override
   public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-    try {
-
-      if (context.getRegistry().containsBeanDefinition("conversionService"))
-        return false;
-
-      ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
-      scanner.addIncludeFilter(new AnnotationTypeFilter(EnableMetamorphosisConversions.class));
-
-      Set<BeanDefinition> findCandidateComponents = scanner.findCandidateComponents("*");
-      for (BeanDefinition beanDefinition : findCandidateComponents) {
-        EnableMetamorphosisConversions[] annotations;
-        annotations = Class.forName(beanDefinition.getBeanClassName())
-            .getAnnotationsByType(EnableMetamorphosisConversions.class);
-        if (annotations != null && annotations.length > 0) {
-          EnableMetamorphosisConversions enableMetamorphosisConversions = annotations[0];
-          return enableMetamorphosisConversions.createConversionService();
-        }
-      }
+    if (context.getRegistry().containsBeanDefinition("conversionService"))
       return false;
-    } catch (ClassNotFoundException e) {
+
+    String beanName = StringUtils.uncapitalize(MetamorphosisConfig.class.getSimpleName());
+    if (!context.getRegistry().containsBeanDefinition(beanName))
       return false;
-    }
+
+    if (!context.getRegistry().getBeanDefinition(beanName).getPropertyValues().contains(CREATE_CONVERSION_SERVICE_ATTR))
+      return false;
+
+    return (boolean) context.getRegistry().getBeanDefinition(beanName).getPropertyValues()
+        .get(CREATE_CONVERSION_SERVICE_ATTR);
   }
 
 }

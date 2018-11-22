@@ -3,20 +3,39 @@ package dev.metamorphosis.core.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.convert.ConversionService;
 
-@Configuration
 @ComponentScan(basePackages = { "dev.metamorphosis" })
 public class MetamorphosisConfig {
+
+  private boolean createConversionService;
+  private String basePackage;
 
   @Conditional(value = ConversionServiceCreationCondition.class)
   @Bean(name = "conversionService")
   public ConversionService getConversionService() {
+    if (!createConversionService)
+      return null;
     ConversionServiceFactoryBean bean = new ConversionServiceFactoryBean();
     bean.afterPropertiesSet();
     return bean.getObject();
+  }
+
+  public void setCreateConversionService(boolean createConversionService) {
+    this.createConversionService = createConversionService;
+  }
+
+  public void setBasePackage(String basePackage) {
+    this.basePackage = basePackage;
+  }
+
+  public boolean isCreateConversionService() {
+    return createConversionService;
+  }
+
+  public String getBasePackage() {
+    return basePackage;
   }
 
 }

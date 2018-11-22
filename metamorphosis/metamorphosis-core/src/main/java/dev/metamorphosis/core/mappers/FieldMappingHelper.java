@@ -21,8 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
-import org.springframework.stereotype.Component;
-
 
 /**
  * Helper class to get mappings between DTO fields and entity fields.<br/>
@@ -31,8 +29,11 @@ import org.springframework.stereotype.Component;
  *
  */
 
-@Component
+// @Configuration
+// @Component
 public class FieldMappingHelper {
+
+  private static final Logger log = LoggerFactory.getLogger(FieldMappingHelper.class);
 
   static private class MapRecord {
     private String dtoField;
@@ -54,19 +55,23 @@ public class FieldMappingHelper {
 
   }
 
-  private static final Logger log = LoggerFactory.getLogger(FieldMappingHelper.class);
+  private String basePackage;
 
   /** dtoClassName - Map<dtoField, path of entityField> */
   private Map<String, Map<String, String>> entityMappingsIndexedByDtoClass = new HashMap<>();
 
   @PostConstruct
   protected void scanDtoAndCreateMappings() {
+    scanDtoAndCreateMappings(basePackage);
+  }
+
+  public void scanDtoAndCreateMappings(String basePackage) {
     log.debug("Scanning DTOs mapped by {} ...", MappedOnEntity.class.getSimpleName());
 
     ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
     scanner.addIncludeFilter(new AnnotationTypeFilter(MappedOnEntity.class));
 
-    scanner.findCandidateComponents("*").stream().map(beanDefinition -> beanDefinition.getBeanClassName())
+    scanner.findCandidateComponents(basePackage).stream().map(beanDefinition -> beanDefinition.getBeanClassName())
     .forEach(this::buildMappingByDTOName);
 
     log.debug("Completed scanning of DTOs mapped by {} ...", MappedOnEntity.class.getSimpleName());
@@ -197,6 +202,14 @@ public class FieldMappingHelper {
 
   private String retrieveFieldNameInEntity(Field dtoField, MappedOnEntityField mappingAnnotation) {
     return StringUtils.isNotBlank(mappingAnnotation.entityField()) ? mappingAnnotation.entityField() : dtoField.getName();
+  }
+
+  public String getBasePackage() {
+    return basePackage;
+  }
+
+  public void setBasePackage(String basePackage) {
+    this.basePackage = basePackage;
   }
 
 }
