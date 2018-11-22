@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fabioformosa/metamorphosis.svg?branch=master)](https://travis-ci.org/fabioformosa/metamorphosis)
+
 # METAMORPHOSIS (CONVERSIONS)
 
 > "Nothing is lost, nothing is created, everything is transformed"
