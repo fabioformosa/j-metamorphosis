@@ -19,7 +19,14 @@ public @interface EnableMetamorphosisConversions {
   @AliasFor(annotation = Import.class, attribute = "value")
   Class<?>[] value() default { MetamorphosisConfigRegistrar.class };
 
+  /**
+   * set to basePackage containing metamorphosis DTOs
+   */
+  String basePackage() default "*";
+
+  /**
+   * set true to create conversionService
+   */
   boolean createConversionService() default true;
 
-  String basePackage() default "*";
 }
