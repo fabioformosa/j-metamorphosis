@@ -80,8 +80,10 @@ public class FieldMappingHelper {
 
   private void startScanByPackageAndBuildMapping(ClassPathScanningCandidateComponentProvider scanner,
       String basePackage) {
-    scanner.findCandidateComponents(basePackage).stream().map(beanDefinition -> beanDefinition.getBeanClassName())
-    .forEach(this::buildMappingByDTOName);
+    scanner.findCandidateComponents(basePackage).stream() //
+        .map(beanDefinition -> beanDefinition.getBeanClassName()) //
+        .distinct() //
+        .forEach(this::buildMappingByDTOName);
   }
 
   private void buildMappingByDTOName(String annotatedDtoClassName) {
