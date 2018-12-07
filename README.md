@@ -8,7 +8,7 @@
 This **java library** is an utility based on **spring conversion service** that helps you to create converters from/to DTO/Entity or between DTOs.
 
 
-It creates the spring conversion service and registers all your converters. For DTO/Entity converters, let inherit from a base classes (DefaultConverterToDTO, DefaultConverterToEntity) to take advantage of automatically entity retrieve from DB. 
+It creates the spring conversion service and registers all your converters. For DTO/Entity converters, let inherit from the base classes (DefaultConverterToDTO, DefaultConverterToEntity) to take advantage of automatically entity retrieve from DB. 
 
 
 Furthermore, if you need a mapping between DTO and Entity fields, for example to create JPA specifications in order to add 'where clause' to HQL queries, you can use mapping annotations (@MappedOnEntity, @MappedOnEntityField) and FieldMapingHelper to get the map <dto entity field, entity field path>.
