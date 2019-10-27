@@ -127,3 +127,7 @@ e.g.
 	  
 	  ...(getters and setters)
 	  }
+
+
+## EXAMPLES ##
+For further details, kook at this [sample project](https://github.com/fabioformosa/metamorphosis-example)
