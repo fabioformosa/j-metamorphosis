@@ -7,7 +7,7 @@
     </encoder>
   </appender>
 
-  <logger name="dev.metamorphosis" level="DEBUG" additivity="false">
+  <logger name="it.fabioformosa.metamorphosis" level="DEBUG" additivity="false">
     <appender-ref ref="stdout"/>
   </logger>
 
