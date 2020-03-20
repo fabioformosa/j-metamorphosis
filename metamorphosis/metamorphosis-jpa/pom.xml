@@ -13,6 +13,15 @@
   
   <description>Metamorphosis-jpa is the metamorphosis module that helps you convert entities from/to DTOs.</description>
   
+  <url>https://github.com/fabioformosa/j-metamorphosis</url>
+  
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://github.com/fabioformosa/j-metamorphosis/blob/master/LICENSE</url>
+    </license>
+  </licenses>
+  
   <developers>
     <developer>
       <name>Fabio Formosa</name>
