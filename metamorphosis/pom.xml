@@ -6,7 +6,7 @@
   <artifactId>metamorphosis-parent</artifactId>
   <packaging>pom</packaging>
 
-  <version>2.1.3-SNAPSHOT</version>
+  <version>3.0.0</version>
 
   <name>metamorphosis</name>
   <description>Metamorphosis helps you convert entities from/to DTOs . "Nothing is lost, nothing is created, everything is transformed." - Lavoisier</description>
@@ -15,7 +15,7 @@
     <connection>scm:git:git://github.com/fabioformosa/j-metamorphosis.git</connection>
     <developerConnection>scm:git:git@github.com:fabioformosa/j-metamorphosis.git</developerConnection>
     <url>https://github.com/fabioformosa/j-metamorphosis</url>
-    <tag>HEAD</tag>
+    <tag>metamorphosis-parent-3.0.0</tag>
   </scm>
 
   <developers>
