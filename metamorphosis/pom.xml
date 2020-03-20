@@ -11,6 +11,15 @@
   <name>metamorphosis</name>
   <description>Metamorphosis helps you convert entities from/to DTOs . "Nothing is lost, nothing is created, everything is transformed." - Lavoisier</description>
 
+  <url>https://github.com/fabioformosa/j-metamorphosis</url>
+  
+  <licenses>
+    <license>
+      <name>MIT</name>
+      <url>https://github.com/fabioformosa/j-metamorphosis/blob/master/LICENSE</url>
+    </license>
+  </licenses>
+
   <scm>
     <connection>scm:git:git://github.com/fabioformosa/j-metamorphosis.git</connection>
     <developerConnection>scm:git:git@github.com:fabioformosa/j-metamorphosis.git</developerConnection>
