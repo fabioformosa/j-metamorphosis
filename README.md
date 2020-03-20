@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/fabioformosa/metamorphosis.svg?branch=master)](https://travis-ci.org/fabioformosa/metamorphosis)
+[![Build Status](https://travis-ci.org/fabioformosa/j-metamorphosis.svg?branch=master)](https://travis-ci.org/fabioformosa/j-metamorphosis)
 
 # METAMORPHOSIS (CONVERSIONS)
 
