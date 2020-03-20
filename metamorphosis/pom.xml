@@ -72,7 +72,7 @@
         <version>2.5.3</version>
         <configuration>
           <preparationGoals>clean</preparationGoals>
-          <releaseProfiles>resources</releaseProfiles>
+<!--           <releaseProfiles>resources</releaseProfiles> -->
           <localCheckout>true</localCheckout>
           <pushChanges>false</pushChanges>
           <mavenExecutorId>forked-path</mavenExecutorId>
