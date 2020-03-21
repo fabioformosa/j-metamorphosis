@@ -158,4 +158,4 @@ e.g.
 
 
 ## EXAMPLES ##
-For further details, kook at this [sample project](https://github.com/fabioformosa/j-metamorphosis-example)
+For further details about how to use `j-metamorphosis`, look at this [sample project](https://github.com/fabioformosa/j-metamorphosis-example).
