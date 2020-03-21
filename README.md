@@ -156,6 +156,9 @@ e.g.
 	  ...(getters and setters)
 	  }
 
+## HOW-TO UPGRADE METAMORPHOSIS VERSIONS ##
+
+Look at the [CHANGELOG](https://github.com/fabioformosa/j-metamorphosis/blob/master/metamorphosis/CHANGELOG.md) to read all breaking changes before to bump metamorphosis version.
 
 ## EXAMPLES ##
 For further details about how to use `j-metamorphosis`, look at this [sample project](https://github.com/fabioformosa/j-metamorphosis-example).
