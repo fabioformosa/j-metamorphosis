@@ -1,4 +1,32 @@
-# METAMORPHOSIS Changelog
+# J-METAMORPHOSIS Changelog
+
+### 3.0.0 ###
+
+#### Breaking Changes ####
+
+In order to publish j-metamorphosis to maven central repo, it needed to change the package.
+So, to import j-metamorphosis 3.0.0, add to your pom.xml
+
+```
+<dependency>
+  <groupId>it.fabioformosa</groupId>
+  <artifactId>metamorphosis-core</artifactId>
+  <version>3.0.0</version>
+</dependency>
+```
+
+or if you use JPA
+
+```
+<dependency>
+  <groupId>it.fabioformosa</groupId>
+  <artifactId>metamorphosis-jpa</artifactId>
+  <version>3.0.0</version>
+</dependency>
+```
+
+and update all your class imports from `dev.metamorphosis` to `it.fabioformosa.metamorphosis`
+
 
 ### 2.1.2 ###
 
@@ -10,15 +38,15 @@ none
  
 
 #### Breaking Changes ####
-Change @EnableMetamorphisisConversions(basePackage = "com.foo.bar") in @EnableMetamorphisisConversions(basePackages = "com.foo.bar") 
+Change `@EnableMetamorphisisConversions(basePackage = "com.foo.bar")` in `@EnableMetamorphisisConversions(basePackages = "com.foo.bar")` 
 
 ### 2.0.1 ###
 
 #### Fix ####
-[Refs #2](https://github.com/fabioformosa/metamorphosis/issues/2) - Restricted component scan for fieldMapping Annotations to basePackage set in @EnableMetamorphisisConversions
+[Refs #2](https://github.com/fabioformosa/metamorphosis/issues/2) - Restricted component scan for fieldMapping Annotations to basePackage set in `@EnableMetamorphisisConversions`
 
 #### New Features or Enhancements ####
-Recommendation: add the basePackage containing your DTOs in @EnableMetamorphisisConversions annotation. e.g. @EnableMetamorphisisConversions(basePackage = "com.foo.bar") 
+Recommendation: add the basePackage containing your DTOs in @EnableMetamorphisisConversions annotation. e.g. `@EnableMetamorphisisConversions(basePackage = "com.foo.bar")`
 
 #### Breaking Changes ####
 none  
