@@ -52,6 +52,8 @@ add `@EnableMetamorphosisConversions` to your spring boot config class
 ## WRITE YOUR CONVERTERS
 ### FROM DTO TO ENTITY
 
+Entend `DefaultConverterToEntity`
+
     @Component
      public class ItemDTOToItemEntity extends DefaultConverterToEntity<ItemDTO, ItemEntity> {
 	     private ItemJpaRepository itemJpaRepository;
@@ -71,6 +73,8 @@ add `@EnableMetamorphosisConversions` to your spring boot config class
      }
 
 ### FROM ENTITY TO DTO
+
+Extend `DefaultConverterToDTO`
 
     @Component
      public class ItemToItemDTO 
