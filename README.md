@@ -5,17 +5,39 @@
 > "Nothing is lost, nothing is created, everything is transformed"
 > _Lavoisier
 
-This **java library** is an utility based on **spring conversion service** that helps you to create converters from/to DTO/Entity or between DTOs.
+This **java library** is an utility lib based on [**spring conversion service**](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert) that helps you to create converters from/to DTO/Entity or between DTOs.
 
 
-It creates the spring conversion service and registers all your converters. For DTO/Entity converters, let inherit from the base classes (DefaultConverterToDTO, DefaultConverterToEntity) to take advantage of automatically entity retrieve from DB. 
+It creates the [spring conversion service](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert-Spring-config) and registers all your [converters](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert-Converter-API). For DTO/Entity converters, let inherit from the base classes (`DefaultConverterToDTO`, `DefaultConverterToEntity`) to take advantage of automatically entity retrieve from DB. 
 
 
-Furthermore, if you need a mapping between DTO and Entity fields, for example to create JPA specifications in order to add 'where clause' to HQL queries, you can use mapping annotations (@MappedOnEntity, @MappedOnEntityField) and FieldMapingHelper to get the map <dto entity field, entity field path>.
+Furthermore, if you need a mapping between DTO and Entity fields, for example to create JPA specifications in order to add 'where clause' to HQL queries, you can use mapping annotations (`@MappedOnEntity`, `@MappedOnEntityField`) and `FieldMapingHelper` to get the mapping between <dto entity field, entity field path>.
 
 
 
 ## QUICK START
+
+### IMPORT LIB
+Add to your pom.xml: `metamorphosis-core` or `metamorphosis-jpa` if you use jpa.
+
+```
+<dependency>
+  <groupId>it.fabioformosa</groupId>
+  <artifactId>metamorphosis-core</artifactId>
+  <version>3.0.0</version>
+</dependency>
+```
+
+or 
+
+```
+<dependency>
+  <groupId>it.fabioformosa</groupId>
+  <artifactId>metamorphosis-jpa</artifactId>
+  <version>3.0.0</version>
+</dependency>
+```
+
 ### ENABLE METAMORPHIS CONVERTIONS
 add `@EnableMetamorphosisConversions` to your spring boot config class
 
