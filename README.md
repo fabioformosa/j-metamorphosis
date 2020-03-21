@@ -78,7 +78,7 @@ Extend `DefaultConverterToDTO`
 
     @Component
      public class ItemToItemDTO 
-                extends DefaultConverterToDTO<ItemEntity, dev.metamorphosis.dtos.ItemDTO> {
+                extends DefaultConverterToDTO<ItemEntity, ItemDTO> {
     }
     
 ## USE METAMORPHIS CONVERTIONS
@@ -99,10 +99,12 @@ Extend `DefaultConverterToDTO`
     }
     
 ## DTOs/ENTITIES: HELPER FOR FIELD MAPPINGS
-Usually DTOs are used to extract data to build hibernate query criteria to apply filtering (e.g. filterable grids).
-In this case, you need mapping data to get entity fieldname for each field of DTO.
-`dev.metamorphosis.mappers.FieldMappingHelper` helps you to get a `map<String, String>` that binds a DTO fieldname to entity fieldname (with dot notation, e.g. 'dto.foo' -> 'entity.foo').
-You should annotate your DTO with annotation `dev.metamorphosis.mappers.MappedOnEntity`  and fields with `dev.metamorphosis.mappers.MappedOnEntityField`, so you can invoke `FieldMappingHelper.getMappingByDTO(DTO.class)` to get mappings data you need.
+Usually DTOs are used to extract data from persistence layer. From DTO, it needs to build hibernate query criteria in order to apply filtering (e.g. filterable grids). For example, if you have in your frontend a filterable grid, your REST controller will receive a DTO with the values of the filter applied from the user. Your API must project this filter in JPA condition on your entity.
+
+So, you need a mapping between DTO fieldnames and entity fieldnames.
+
+`it.fabioformosa.metamorphosis.mappers.FieldMappingHelper` helps you to get a `map<String, String>` that binds a DTO fieldname to an entity fieldname (with dot notation, e.g. 'dto.foo' -> 'entity.foo').
+To accomplish it, you should annotate your DTO with the annotation `it.fabioformosa.metamorphosis.mappers.MappedOnEntity`  and DTO fields with `it.fabioformosa.metamorphosis.mappers.MappedOnEntityField`, so you can invoke `FieldMappingHelper.getMappingByDTO(DTO.class)` to get mappings data you need to build the right JPA queries.
 e.g. 
 
     ### ENTITY ###
@@ -156,4 +158,4 @@ e.g.
 
 
 ## EXAMPLES ##
-For further details, kook at this [sample project](https://github.com/fabioformosa/metamorphosis-example)
+For further details, kook at this [sample project](https://github.com/fabioformosa/j-metamorphosis-example)
