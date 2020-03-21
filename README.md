@@ -13,7 +13,7 @@ It creates the [spring conversion service](https://docs.spring.io/spring-framewo
 
 Furthermore, if you need a mapping between DTO and Entity fields, for example to create JPA specifications in order to add 'where clause' to HQL queries, you can use mapping annotations (`@MappedOnEntity`, `@MappedOnEntityField`) and `FieldMapingHelper` to get the mapping between <dto entity field, entity field path>.
 
-
+![Chameleon - ph. Nandhu Kumar - pexels.com!](https://images.pexels.com/photos/312826/pexels-photo-312826.jpeg?auto=compress&cs=tinysrgb&h=325&w=470 "Chameleon - ph. Nandhu Kumar - pexels.com")
 
 ## QUICK START
 
@@ -162,3 +162,6 @@ Look at the [CHANGELOG](https://github.com/fabioformosa/j-metamorphosis/blob/mas
 
 ## EXAMPLES ##
 For further details about how to use `j-metamorphosis`, look at this [sample project](https://github.com/fabioformosa/j-metamorphosis-example).
+
+## CREDITS
+Chameleon in this README file is a picture of ph. Nandhu Kumar (pexels.com)
