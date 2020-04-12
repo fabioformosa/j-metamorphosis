@@ -5,7 +5,9 @@
 > "Nothing is lost, nothing is created, everything is transformed"
 > _Lavoisier
 
-This **java library** is an utility lib based on [**spring conversion service**](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert) that helps you to create converters from/to DTO/Entity or between DTOs.
+**J-Metamorphosis** is the java version of [**Metamorphosis**](https://fabioformosa.github.io/metamorphosis), an utility library to ease conversions of objects, provided as java, javascript and NestJS as well. 
+
+J-Metamorphosis is based on [**spring conversion service**](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert) that helps you to create converters from/to DTO/Entity or between DTOs.
 
 
 It creates the [spring conversion service](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert-Spring-config) and registers all your [converters](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#core-convert-Converter-API). For DTO/Entity converters, let inherit from the base classes (`DefaultConverterToDTO`, `DefaultConverterToEntity`) to take advantage of automatically entity retrieve from DB. 
