@@ -55,22 +55,22 @@ add `@EnableMetamorphosisConversions` to your spring boot config class
 
 You can extend `AbstractBaseConverter` to write a generic converter: class to class.
 
-		@Component
-		public class CustomerToConsumerConverter extends AbstractBaseConverter<Customer, Consumer>{
+	@Component
+	public class CustomerToConsumerConverter extends AbstractBaseConverter<Customer, Consumer>{
 
-			@Override
-			protected void convert(Customer source, Consumer target){
-				target.setId(source.getId())
-				target.setName(source.getName());
-				...
-			}
-
-			@Override
-			protected T createOrRetrieveTarget(Customer source){
-				return new Consumer();
-			}
-
+		@Override
+		protected void convert(Customer source, Consumer target){
+			target.setId(source.getId())
+			target.setName(source.getName());
+			...
 		}
+
+		@Override
+		protected T createOrRetrieveTarget(Customer source){
+			return new Consumer();
+		}
+
+	}
 
 		
 		
@@ -99,7 +99,7 @@ You can extend:
 		       target.setDate(source.getDate);
 		       ...
 		   }
-	  	}
+	  }
 
 * `DefaultConverterToEntity`: As `AbstractBaseConverterToEntity`, but it automatically converts fields that match by fieldname. It uses `BeanUtils.copyProperties`
 	
@@ -119,7 +119,7 @@ You can extend:
 		      //for not-matching fields by fieldname 
 		      target.setField(...);
 		   }
-	  	}
+	  }
 
 ### FROM ENTITY TO DTO
 
@@ -140,7 +140,7 @@ You can extend:
 
 * `DefaultConverterToDTO`: As `AbstractBaseConverterToDTO`, but it automatically converts fields that match by fieldname. It uses `BeanUtils.copyProperties` 
 
-	    @Component
+	     @Component
 	     public class ItemToItemDTO extends DefaultConverterToDTO<ItemEntity, ItemDTO> {
 	     
 	     	    @Override
@@ -150,7 +150,7 @@ You can extend:
 		      //for not-matching fields by fieldname 
 		      target.setField(...);
 		   }
-	    }
+	 	}
     
 ## USE METAMORPHIS CONVERTIONS
 
