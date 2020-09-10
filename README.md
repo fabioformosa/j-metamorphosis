@@ -52,36 +52,105 @@ add `@EnableMetamorphosisConversions` to your spring boot config class
 
     }
 ## WRITE YOUR CONVERTERS
+
+You can extend `AbstractBaseConverter` to write a generic converter: class to class.
+
+		@Component
+		public class CustomerToConsumerConverter extends AbstractBaseConverter<Customer, Consumer>{
+
+			@Override
+			protected void convert(Customer source, Consumer target){
+				target.setId(source.getId())
+				target.setName(source.getName());
+				...
+			}
+
+			@Override
+			protected T createOrRetrieveTarget(Customer source){
+				return new Consumer();
+			}
+
+		}
+
+		
+		
+If you have to write converter from/to entity, so you can take advantage of the following abstract classes.
+
+
+
 ### FROM DTO TO ENTITY
 
-Entend `DefaultConverterToEntity`
+You can extend:
 
-    @Component
-     public class ItemDTOToItemEntity extends DefaultConverterToEntity<ItemDTO, ItemEntity> {
-	     private ItemJpaRepository itemJpaRepository;
+* `AbstractBaseConverterToEntity`: The Entity is retrieved from DB Repository looking for the ID specified by the DTO. Otherwise a new entity is instantiated.
+		
+		@Component
+		public class ItemDTOToItemEntity extends AbstractBaseConverterToEntity<ItemDTO, ItemEntity> {
+		     private ItemJpaRepository itemJpaRepository;
 
-	     @Override
-	     protected JpaRepository getRepository() {
-	       return itemJpaRepository;
-	     }
+		     @Override
+		     protected JpaRepository getRepository() {
+		       return itemJpaRepository;
+		     }
 
-		@Override
-        protected void convert(ItemDTO source, ItemEntity target) {
-           ItemEntity target = super.convert(source, target);
-    
-         //for not-matching fields by fieldname 
-         target.setField(...);
-       }
-     }
+		    @Override
+		    protected void convert(ItemDTO source, ItemEntity target) {
+		       target.setName(source.getName);
+		       target.setDate(source.getDate);
+		       ...
+		   }
+	  	}
+
+* `DefaultConverterToEntity`: As `AbstractBaseConverterToEntity`, but it automatically converts fields that match by fieldname. It uses `BeanUtils.copyProperties`
+	
+		@Component
+		public class ItemDTOToItemEntity extends DefaultConverterToEntity<ItemDTO, ItemEntity> {
+		     private ItemJpaRepository itemJpaRepository;
+
+		     @Override
+		     protected JpaRepository getRepository() {
+		       return itemJpaRepository;
+		     }
+
+		    @Override
+		    protected void convert(ItemDTO source, ItemEntity target) {
+		       ItemEntity target = super.convert(source, target);
+
+		      //for not-matching fields by fieldname 
+		      target.setField(...);
+		   }
+	  	}
 
 ### FROM ENTITY TO DTO
 
-Extend `DefaultConverterToDTO`
+You can extend:
 
-    @Component
-     public class ItemToItemDTO 
-                extends DefaultConverterToDTO<ItemEntity, ItemDTO> {
-    }
+* `AbstractBaseConverterToDTO`: A new DTO instance (target obj) is automatically created calling the default constructor
+		
+		@Component
+		public class ItemToItemDTO extends AbstractBaseConverterToDTO<ItemEntity, ItemDTO> {
+		    
+		    @Override
+		    protected void convert(ItemEntity source, ItemDTO target) {
+		       target.setName(source.getName);
+		       target.setDate(source.getDate);
+		       ...
+		   }
+	  	}
+
+* `DefaultConverterToDTO`: As `AbstractBaseConverterToDTO`, but it automatically converts fields that match by fieldname. It uses `BeanUtils.copyProperties` 
+
+	    @Component
+	     public class ItemToItemDTO extends DefaultConverterToDTO<ItemEntity, ItemDTO> {
+	     
+	     	    @Override
+		    protected void convert(ItemEntity source, ItemDTO target) {
+		       ItemEntity target = super.convert(source, target);
+
+		      //for not-matching fields by fieldname 
+		      target.setField(...);
+		   }
+	    }
     
 ## USE METAMORPHIS CONVERTIONS
 
