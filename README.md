@@ -136,7 +136,7 @@ You can extend:
 		       target.setDate(source.getDate);
 		       ...
 		   }
-	  	}
+	  }
 
 * `DefaultConverterToDTO`: As `AbstractBaseConverterToDTO`, but it automatically converts fields that match by fieldname. It uses `BeanUtils.copyProperties` 
 
@@ -178,7 +178,8 @@ So, you need a mapping between DTO fieldnames and entity fieldnames.
 To accomplish it, you should annotate your DTO with the annotation `it.fabioformosa.metamorphosis.mappers.MappedOnEntity`  and DTO fields with `it.fabioformosa.metamorphosis.mappers.MappedOnEntityField`, so you can invoke `FieldMappingHelper.getMappingByDTO(DTO.class)` to get mappings data you need to build the right JPA queries.
 e.g. 
 
-    ### ENTITY ###
+   ### ENTITY ###
+    
 	@Entity
 	public class AuditedItemEntity {
 	  private Long id;
@@ -199,7 +200,7 @@ e.g.
       ... (getters and setters)...
 	}
 	
-	### DTO ###	
+### DTO ###	
 
 	@MappedOnEntity(AuditedItemEntity.class)
 	public class AuditItemDTO {
