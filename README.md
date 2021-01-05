@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/fabioformosa/j-metamorphosis.svg?branch=master)](https://travis-ci.org/fabioformosa/j-metamorphosis)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/it.fabioformosa/metamorphosis-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/it.fabioformosa/metamorphosis-core)
 
 # METAMORPHOSIS (CONVERSIONS)
 
