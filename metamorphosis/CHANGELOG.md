@@ -1,5 +1,9 @@
 # J-METAMORPHOSIS Changelog
 
+### 4.0.0 ###
+
+Upgraded to Java 21 and Spring 7.0.0, Spring Data 4.0.5.
+
 ### 3.0.0 ###
 
 #### Breaking Changes ####
