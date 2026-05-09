@@ -38,10 +38,12 @@ jobs:
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_TOKEN_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_TOKEN_PASSWORD }}
+          MAVEN_GPG_SECRET_KEY: ${{ secrets.MAVEN_GPG_SECRET_KEY }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_SECRET_KEY_PASSWORD }}
         run: |
           test -n "$MAVEN_CENTRAL_USERNAME" || (echo "Missing secret: MAVEN_CENTRAL_USERNAME" && exit 1)
           test -n "$MAVEN_CENTRAL_PASSWORD" || (echo "Missing secret: MAVEN_CENTRAL_PASSWORD" && exit 1)
+          test -n "$MAVEN_GPG_SECRET_KEY" || (echo "Missing secret: MAVEN_GPG_SECRET_KEY" && exit 1)
           test -n "$MAVEN_GPG_PASSPHRASE" || (echo "Missing secret: MAVEN_GPG_PASSPHRASE" && exit 1)
           mvn -B clean deploy \
             -DperformRelease=true \
