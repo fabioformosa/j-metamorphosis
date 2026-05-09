@@ -2,16 +2,19 @@ package it.fabioformosa.metamorphosis.jpa.repositories;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Component;
 
 import it.fabioformosa.metamorphosis.jpa.entities.converting.SimpleEntity;
 
 @Component
+@SuppressWarnings("deprecation")
 public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {
 
   @Override
@@ -44,8 +47,17 @@ public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {
   }
 
   @Override
+  public <S extends SimpleEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
+    return null;
+  }
+
+  @Override
   public void deleteInBatch(Iterable<SimpleEntity> entities) {
 
+  }
+
+  @Override
+  public void deleteAllInBatch(Iterable<SimpleEntity> entities) {
   }
 
   @Override
@@ -53,7 +65,21 @@ public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {
   }
 
   @Override
+  public void deleteAllByIdInBatch(Iterable<Long> ids) {
+  }
+
+  @Override
   public SimpleEntity getOne(Long id) {
+    return null;
+  }
+
+  @Override
+  public SimpleEntity getById(Long id) {
+    return null;
+  }
+
+  @Override
+  public SimpleEntity getReferenceById(Long id) {
     return null;
   }
 
@@ -79,7 +105,9 @@ public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {
 
   @Override
   public Optional<SimpleEntity> findById(Long id) {
-    return null;
+    SimpleEntity simpleEntity = new SimpleEntity();
+    simpleEntity.setId(id);
+    return Optional.of(simpleEntity);
   }
 
   @Override
@@ -94,6 +122,10 @@ public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {
 
   @Override
   public void deleteById(Long id) {
+  }
+
+  @Override
+  public void deleteAllById(Iterable<? extends Long> ids) {
   }
 
   @Override
@@ -126,6 +158,11 @@ public class SimpleJpaRepositoryImpl implements SimpleJpaRepository {
   @Override
   public <S extends SimpleEntity> boolean exists(Example<S> example) {
     return false;
+  }
+
+  @Override
+  public <S extends SimpleEntity, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
+    return null;
   }
 
 }

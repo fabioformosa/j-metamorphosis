@@ -4,7 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -19,8 +19,7 @@ import org.springframework.core.convert.converter.Converter;
  * the target or retrieve it from source (e.g. DB retrieve when source has ID)
  * <br>
  * 
- * @see also AbstractBaseConverterToDTO or AbstractBaseConverterToEntity if you
- *      have to convert from/to jpa entity
+ * @see AbstractBaseConverterToDTO
  * 
  * @author Fabio.Formosa
  *

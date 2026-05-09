@@ -2,16 +2,19 @@ package it.fabioformosa.metamorphosis.jpa.repositories;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Component;
 
 import it.fabioformosa.metamorphosis.jpa.entities.converting.ItemEntity;
 
 @Component
+@SuppressWarnings("deprecation")
 public class ItemJpaRepositoryImpl implements ItemJpaRepository {
 
   @Override
@@ -44,8 +47,17 @@ public class ItemJpaRepositoryImpl implements ItemJpaRepository {
   }
 
   @Override
+  public <S extends ItemEntity> List<S> saveAllAndFlush(Iterable<S> entities) {
+    return null;
+  }
+
+  @Override
   public void deleteInBatch(Iterable<ItemEntity> entities) {
 
+  }
+
+  @Override
+  public void deleteAllInBatch(Iterable<ItemEntity> entities) {
   }
 
   @Override
@@ -53,7 +65,21 @@ public class ItemJpaRepositoryImpl implements ItemJpaRepository {
   }
 
   @Override
+  public void deleteAllByIdInBatch(Iterable<Long> ids) {
+  }
+
+  @Override
   public ItemEntity getOne(Long id) {
+    return null;
+  }
+
+  @Override
+  public ItemEntity getById(Long id) {
+    return null;
+  }
+
+  @Override
+  public ItemEntity getReferenceById(Long id) {
     return null;
   }
 
@@ -79,7 +105,9 @@ public class ItemJpaRepositoryImpl implements ItemJpaRepository {
 
   @Override
   public Optional<ItemEntity> findById(Long id) {
-    return null;
+    ItemEntity itemEntity = new ItemEntity();
+    itemEntity.setId(id);
+    return Optional.of(itemEntity);
   }
 
   @Override
@@ -94,6 +122,10 @@ public class ItemJpaRepositoryImpl implements ItemJpaRepository {
 
   @Override
   public void deleteById(Long id) {
+  }
+
+  @Override
+  public void deleteAllById(Iterable<? extends Long> ids) {
   }
 
   @Override
@@ -126,6 +158,11 @@ public class ItemJpaRepositoryImpl implements ItemJpaRepository {
   @Override
   public <S extends ItemEntity> boolean exists(Example<S> example) {
     return false;
+  }
+
+  @Override
+  public <S extends ItemEntity, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
+    return null;
   }
 
 }

@@ -1,12 +1,11 @@
 package it.fabioformosa.metamorphosis.core;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import it.fabioformosa.core.entities.converting.SampleTransientItem;
 import it.fabioformosa.core.entities.converting.SimpleTransientObject;
@@ -14,17 +13,15 @@ import it.fabioformosa.metamorphosis.test.BaseConversionTest;
 import it.fabioformosa.metamorphosis.test.dto.ItemDTO;
 import it.fabioformosa.metamorphosis.test.dto.SimpleDTO;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConversionTestConfig.class })
 public class CoreConversionTest extends BaseConversionTest {
 
   private SimpleTransientObject simpleMock;
   private SampleTransientItem sampleItemMock;
 
-  @Before
+  @BeforeEach
   public void init() {
-    MockitoAnnotations.initMocks(this);
-
     simpleMock = new SimpleTransientObject();
     simpleMock.setId(1L);
     simpleMock.setFoo(FOO);
@@ -38,22 +35,22 @@ public class CoreConversionTest extends BaseConversionTest {
 
   @Test
   public void fromTransientClassToDTO() {
-    Assert.assertNotNull(conversionService);
+    Assertions.assertNotNull(conversionService);
 
     SimpleDTO simpleDTO = conversionService.convert(simpleMock, SimpleDTO.class);
-    Assert.assertEquals(simpleMock.getId(), simpleDTO.getId());
-    Assert.assertEquals(simpleMock.getFoo(), simpleDTO.getFoo());
-    Assert.assertEquals(FOO + " " + BAR, simpleDTO.getFooBar());
+    Assertions.assertEquals(simpleDTO.getId(), simpleMock.getId());
+    Assertions.assertEquals(simpleDTO.getFoo(), simpleMock.getFoo());
+    Assertions.assertEquals(FOO + " " + BAR, simpleDTO.getFooBar());
   }
 
   @Test
   public void fromTransientItemToItemDTO() {
-    Assert.assertNotNull(conversionService);
+    Assertions.assertNotNull(conversionService);
 
     ItemDTO itemDTO = conversionService.convert(sampleItemMock, ItemDTO.class);
 
-    Assert.assertEquals(sampleItemMock.getId(), itemDTO.getId());
-    Assert.assertEquals(sampleItemMock.getName(), itemDTO.getName());
+    Assertions.assertEquals(itemDTO.getId(), sampleItemMock.getId());
+    Assertions.assertEquals(itemDTO.getName(), sampleItemMock.getName());
   }
 
 }

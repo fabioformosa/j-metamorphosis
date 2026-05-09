@@ -1,6 +1,6 @@
 package it.fabioformosa.metamorphosis.jpa.entities.converting;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 @Entity
 public class ItemEntity {

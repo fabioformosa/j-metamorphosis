@@ -2,19 +2,19 @@ package it.fabioformosa.metamorphosis.jpa;
 
 import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import it.fabioformosa.metamorphosis.core.mappers.FieldMappingHelper;
 import it.fabioformosa.metamorphosis.jpa.dtos.mapping.AuditItemDTO;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { ConversionTestConfig.class })
 public class MappingTest {
 
@@ -26,63 +26,63 @@ public class MappingTest {
   @Test
   public void untaggedDTOFieldAreNotInMapping() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertFalse(entityMapping.containsKey("id"));
+    Assertions.assertFalse(entityMapping.containsKey("id"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 
   @Test
   public void mappingWithTheSameName() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertTrue(entityMapping.containsKey("name"));
-    Assert.assertEquals(entityMapping.get("name"), "name");
+    Assertions.assertTrue(entityMapping.containsKey("name"));
+    Assertions.assertEquals("name", entityMapping.get("name"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 
   @Test
   public void mappingWithNotEqualFieldname() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertTrue(entityMapping.containsKey("categoryName"));
-    Assert.assertEquals(entityMapping.get("categoryName"), "category");
+    Assertions.assertTrue(entityMapping.containsKey("categoryName"));
+    Assertions.assertEquals("category", entityMapping.get("categoryName"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 
   @Test
   public void mappingNotPrimitiveField() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertTrue(entityMapping.containsKey("locationDTO.name"));
-    Assert.assertEquals(entityMapping.get("locationDTO.name"), "location.name");
-    Assert.assertEquals(entityMapping.get("locationDTO.latitude"), "location.latitude");
-    Assert.assertEquals(entityMapping.get("locationDTO.longitude"), "location.longitude");
+    Assertions.assertTrue(entityMapping.containsKey("locationDTO.name"));
+    Assertions.assertEquals("location.name", entityMapping.get("locationDTO.name"));
+    Assertions.assertEquals("location.latitude", entityMapping.get("locationDTO.latitude"));
+    Assertions.assertEquals("location.longitude", entityMapping.get("locationDTO.longitude"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 
   @Test
   public void mappingWithNotTheSameStructure() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertTrue(entityMapping.containsKey("auditDTO.createdDate"));
-    Assert.assertEquals(entityMapping.get("auditDTO.createdDate"), "createdDate");
-    Assert.assertTrue(entityMapping.containsKey("auditDTO.creationUser"));
-    Assert.assertEquals(entityMapping.get("auditDTO.creationUser"), "creationUser");
-    Assert.assertTrue(entityMapping.containsKey("auditDTO.lastModifyDate"));
-    Assert.assertEquals(entityMapping.get("auditDTO.lastModifyDate"), "lastModifyDate");
-    Assert.assertTrue(entityMapping.containsKey("auditDTO.lastModifyUser"));
-    Assert.assertEquals(entityMapping.get("auditDTO.lastModifyUser"), "lastModifyUser");
+    Assertions.assertTrue(entityMapping.containsKey("auditDTO.createdDate"));
+    Assertions.assertEquals("createdDate", entityMapping.get("auditDTO.createdDate"));
+    Assertions.assertTrue(entityMapping.containsKey("auditDTO.creationUser"));
+    Assertions.assertEquals("creationUser", entityMapping.get("auditDTO.creationUser"));
+    Assertions.assertTrue(entityMapping.containsKey("auditDTO.lastModifyDate"));
+    Assertions.assertEquals("lastModifyDate", entityMapping.get("auditDTO.lastModifyDate"));
+    Assertions.assertTrue(entityMapping.containsKey("auditDTO.lastModifyUser"));
+    Assertions.assertEquals("lastModifyUser", entityMapping.get("auditDTO.lastModifyUser"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 
   @Test
   public void mappingWithNotTheSameStructure2() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertTrue(entityMapping.containsKey("targetLocationName"));
-    Assert.assertEquals(entityMapping.get("targetLocationName"), "targetLocation.name");
+    Assertions.assertTrue(entityMapping.containsKey("targetLocationName"));
+    Assertions.assertEquals("targetLocation.name", entityMapping.get("targetLocationName"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 
   @Test
   public void mappingWithNotTheSameStructure3() {
     Map<String, String> entityMapping = dtoFieldMapper.getMappingByDTO(AuditItemDTO.class);
-    Assert.assertTrue(entityMapping.containsKey("itemType.enumLabel"));
-    Assert.assertEquals(entityMapping.get("itemType.enumLabel"), "itemTypeLabel");
+    Assertions.assertTrue(entityMapping.containsKey("itemType.enumLabel"));
+    Assertions.assertEquals("itemTypeLabel", entityMapping.get("itemType.enumLabel"));
     log.info("mapping: {}", dtoFieldMapper.getMappingByDTO(AuditItemDTO.class));
   }
 

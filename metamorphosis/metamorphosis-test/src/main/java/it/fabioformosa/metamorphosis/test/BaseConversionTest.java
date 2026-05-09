@@ -1,6 +1,6 @@
 package it.fabioformosa.metamorphosis.test;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.core.convert.ConversionService;
 

@@ -1,5 +1,7 @@
 package it.fabioformosa.metamorphosis.jpa.converters;
 
+import jakarta.annotation.Resource;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +13,11 @@ import it.fabioformosa.metamorphosis.test.dto.ItemDTO;
 @Component
 public class ItemDTOToItemEntity extends DefaultConverterToEntity<ItemDTO, ItemEntity> {
 
+  @Resource
   private ItemJpaRepository itemJpaRepository;
 
   @Override
-  @SuppressWarnings("rawtypes")
-  protected JpaRepository getRepository() {
+  protected JpaRepository<ItemEntity, Long> getRepository() {
     return itemJpaRepository;
   }
 

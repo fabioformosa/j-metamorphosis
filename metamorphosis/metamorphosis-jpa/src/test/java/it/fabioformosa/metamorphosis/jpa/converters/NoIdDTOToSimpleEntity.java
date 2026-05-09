@@ -1,6 +1,6 @@
 package it.fabioformosa.metamorphosis.jpa.converters;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
